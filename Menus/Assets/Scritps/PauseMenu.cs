@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField]
+    GameObject pauseMenuUI;
+    [SerializeField]
+    GameObject blur;
 
     public static bool gameIsPaused = false;
-    public GameObject pauseMenuUI;
     // Use this for initialization
 
     void Start()
@@ -17,23 +20,23 @@ public class PauseMenu : MonoBehaviour
     }
 
     //CHECK_WHAT_KEY_IS_USING//
-    //KeyCode FetchKey()
-    //{
-    //    int e = System.Enum.GetNames(typeof(KeyCode)).Length;
-    //    for (int i = 0; i < e; i++)
-    //    {
-    //        if (Input.GetKey((KeyCode)i))
-    //        {
-    //            return (KeyCode)i;
-    //        }
-    //    }
-    //    return KeyCode.None;
-    //}
-    //print(FetchKey());
+    KeyCode FetchKey()
+    {
+        int e = System.Enum.GetNames(typeof(KeyCode)).Length;
+        for (int i = 0; i < e; i++)
+        {
+            if (Input.GetKey((KeyCode)i))
+            {
+                return (KeyCode)i;
+            }
+        }
+        return KeyCode.None;
+    }
 
     // Update is called once per frame
     void Update()
     {
+    print(FetchKey());
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
@@ -54,6 +57,7 @@ public class PauseMenu : MonoBehaviour
     }
     void Pause()
     {
+        blur.SetActive(true);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;

@@ -1,8 +1,8 @@
 Win64
 PlayerPath?
-C:/Users/Administrator/Desktop/GJ_Game/Menus/Builds_Tests/Menus.exe
+C:/Users/Administrator/Desktop/GameJamDefender/Menus/Builds_Tests/Menus.exe
 SceneListBegin?
-Assets/Scenes/SampleScene.unity
+Assets/Scenes/Menu.unity
 SceneListEnd?
 984dcc0ba3707b7691fbdca8ff508d28 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 01aa15e337e3a9c62f15153dfac6d589 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
