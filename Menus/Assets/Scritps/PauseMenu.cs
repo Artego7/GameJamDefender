@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+
     [SerializeField]
     GameObject pauseMenuUI;
+    [SerializeField]
+    GameObject optionsGameMenuUI;
     [SerializeField]
     GameObject blur;
 
@@ -19,24 +22,24 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    //CHECK_WHAT_KEY_IS_USING//
-    KeyCode FetchKey()
-    {
-        int e = System.Enum.GetNames(typeof(KeyCode)).Length;
-        for (int i = 0; i < e; i++)
-        {
-            if (Input.GetKey((KeyCode)i))
-            {
-                return (KeyCode)i;
-            }
-        }
-        return KeyCode.None;
-    }
+    ////CHECK_WHAT_KEY_IS_USING//
+    //KeyCode FetchKey()
+    //{
+    //    int e = System.Enum.GetNames(typeof(KeyCode)).Length;
+    //    for (int i = 0; i < e; i++)
+    //    {
+    //        if (Input.GetKey((KeyCode)i))
+    //        {
+    //            return (KeyCode)i;
+    //        }
+    //    }
+    //    return KeyCode.None;
+    //}
+    //print(FetchKey());
 
     // Update is called once per frame
     void Update()
     {
-    print(FetchKey());
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
@@ -51,7 +54,9 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
+        blur.SetActive(false);
         pauseMenuUI.SetActive(false);
+        optionsGameMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
     }
@@ -62,23 +67,16 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         gameIsPaused = true;
     }
-    public void LoadMainMenu()
+    public void LoadStartMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Start");
-        Resume();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
     public void RestartGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Resume();
     }
-    public void LoadLevelsMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Level_Selector");
-        Resume();
-    }
-
 }
